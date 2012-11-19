@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globant :: Welcome to the HTML5 bootcamp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  </head>
+<body style="text-align: center">
+
+  <div data-role="page" id="inicio">
+    <div data-role="header" data-position="fixed">
+      <h2> JQuery Mobile Index</h2>
+      <div data-role="navbar" data-theme="a">
+        <ul>
+          <li><a href="/pages/pagina1.html" data-transition="pop">Pagina 1</a></li>
+          <li><a href="/pages/pagina2.html" data-transition="flip">Pagina 2</a></li>
+          <li><a href="/pages/pagina3.html" data-transition="slide">Pagina 3</a></li>
+          <li><a href="/pages/sample1.html" data-transition="slidedown">Sample 1</a></li>
+        </ul> 
+      </div><!-- /navbar -->
+    </div> <!-- /header -->
+
+    <div data-role="content">
+    
+      <button id="boton1" data-inline="true"> Button Welcome </button>
+      <button id="boton2" data-inline="true"> Movies </button>
+      <br />
+      <textarea id="alias"></textarea>
+      <br />  
+      <div id="respuesta"> </div>
+      <br /> 
+      <div id="movies1" style="float:none"> </div> 
+
+      <script src ="scripts/alert.js"></script>
+ 	    <script src="scripts/focus.js"> </script>
+      <script src="scripts/botonresponseurl.js"></script>
+      <script src="scripts/botonmovies.js"></script>
+
+      
+   
+    </div> <!-- /content-->
+
+    <div data-role="footer" data-position="fixed"> 
+      <h4>Pie de Index</h4>
+    </div><!-- /footer -->
+
+  </div> <!-- /page 1 -->
+
+</body>
+</html>
