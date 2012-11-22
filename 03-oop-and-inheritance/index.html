@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globant :: Welcome to the HTML5 bootcamp</title>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="underscore.js"></script>
+  </head>
+
+  <body style="text-align: center">
+  <script src="Observerlist.js"></script>
+  <script src="Subject.js"></script>
+  <script> 
+
+    // Extend an object with an extension
+    //extend (source, target)
+    
+    function extend( obj, extension ){
+      for ( var key in obj ){
+        extension[key] = obj[key];
+      };
+    }
+    
+    //---------------------------------------------------- 
+
+    //Metodo de objeto con prototype
+    // Object Movie
+    function Movie(){
+      this.attributes = {}
+    }
+    Movie.prototype.play = function (){
+      //console.log('Playing '+this.attributes.title+'...');
+      this.Notify('play',this.get('title'));
+    };
+    Movie.prototype.stop = function (){
+      //console.log('Stopped '+this.attributes.title+'...');
+      this.Notify('stop',this.get('title'));
+    };
+    Movie.prototype.set = function (attr, value){
+      this.attributes[attr] = value;
+    };
+    Movie.prototype.get = function (attr){
+      return (attr+': '+this.attributes[attr]);
+    };
+
+    //---------------------------------------------------- 
+    // Object Movie Observer
+    function MovieObserver(){
+        this.Update = function(event, name){
+          if (event == 'play'){
+            console.log('Playing '+name+'...');
+          }else
+            if (event == 'stop'){
+              console.log('Stopped'+name+'...');
+            }
+        }
+     };
+      
+    //----------------------------------------------------
+    extend(new Subject(), Movie.prototype); //Movie hereda de Subject
+    //_.extend(Movie.prototype, Subject); //test de otra manera de heredar
+    //Movie.prototype  = new Subject(); //test de otra manera de heredar
+    console.log('Movie es Subject: '+Movie instanceof Subject);
+    Movie.AddObserver(MovieObserver); // Agrego el Observer a Movie
+
+    //----------------------------------------------------
+    //test exercise 4 and 5
+    console.log('Test ejercicio 4 y 5');
+    var rambo = new Movie();
+    rambo.set('title','RamboI');
+    rambo.set('gender','Action');
+
+
+    var batman = new Movie();
+    batman.set('title','Batman Begins');
+    batman.set('gender','Action');
+
+    
+    console.log(rambo.play()); // hay un problema cuando se quiere hacer el Notify, dice q no es un metodo de Movie cuando en realidad ya se le hiso la extension...PREGUNTAR! 
+    console.log(batman.play());
+
+    //----------------------------------------------------------
+    // Object DownloadableMovie
+    function DownloadableMovie(){}
+
+    extend(Movie, DownloadableMovie);
+
+    DownloadableMovie.prototype.download = function(){
+      console.log('You are downloading '+this.get('title')+'...');
+    };
+
+    //test exercise 8
+    console.log('Test ejercicio 8');
+    var downloadmovie = new DownloadableMovie();
+    downloadmovie.set('title','Corqui: La fuerza del cariño');
+    console.log(downloadmovie.download());
+
+    //----------------------------------------------------------
+    // Object Social
+    function Social() {}
+
+    Social.prototype.share = function (friendName) {
+      console.log('Sharing '+this.get('title')+' with ' + friendName);
+    };
+     Social.prototype.like = function () {
+      console.log('Like '+this.get('title')+'...');
+    };
+
+    //_.extend(target, source)
+    //mix Movie with Object Social using underscore.js
+    //_.extend(Movie.prototype, Social);
+
+    //test exercise 10
+    console.log('Test ejercicio 10');
+    rambo.share('friends');
+    rambo.like();
+    batman.share('Scarface');
+    batman.like();
+    
+
+  </script>
+
+  </body>
+</html>
