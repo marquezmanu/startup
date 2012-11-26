@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globant :: Welcome to the HTML5 bootcamp</title>
+    <script src="scripts/lib/underscore.js"></script>
+    <script src="scripts/lib/handlebars.js"></script>
+    <script src="scripts/lib/dust.js"></script>
+    <script src="scripts/lib/jquery.js"></script>
+  </head>
+
+  <body>
+
+    <script id="entry-template" type="text/x-handlebars-template">
+      <h3> Using Handlebars Template </h3>
+      <div class="profile_container">
+        <h1>Handlebars Template Profile</h1>
+        <div class="profile_info">
+          <h2> Profile Info: </h2>
+          Name : <strong>{{name}}</strong> <br />
+          Birth: {{birth}} <br />
+          Nationality: {{nationality}} <br />
+          Studies: {{studies}} <br />
+          <h2> Jobs: </h2>
+          <ul class="jobs_list">
+            {{#each jobs}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div><!-- .profile_info -->
+      </div><!-- .profile_container -->
+    </script>
+
+  	<script>
+
+  		$(document).ready(function(){
+
+  			var data = {
+  				name : 'Manuel Marquez',
+  				birth : '17/09/1988',
+  				nationality : 'Argentina',
+  				studies : 'UNICEN',
+  				jobs : ['one job','second job','third job'],
+  			}
+
+      function handlebarstemplate(data){
+        var source = $('#entry-template').html();
+        var template = Handlebars.compile(source);
+        var context = data;
+        var html = template(context);
+        $('#withhandlebars').html(html);
+      }
+
+      function underscoretemplate(data){
+        //_.template(templateString, [data], [settings]) 
+        var templateString = '<div id="underscore"><h3> Using Underscore Template</h3><div id="profile_container"><h1> Underscore Template Profile</h1><div id="profile_info"><h2> Profile Info: </h2> Name: <strong><%= name %></strong><br /> Birth: <%= birth %> <br /> Nationality: <%= nationality %> <br /> Studies: <%= studies %><br /> <h2> Jobs: </h2><ul> <% _.each(jobs, function(job) { %> <li><%= job %></li> <% }); %></ul> </div></div></div>';
+
+        var html = _.template(templateString, data);
+        $('#withunderscore').html(html);
+      }
+
+
+      handlebarstemplate(data);
+      underscoretemplate(data);
+
+  		});
+  	</script>
+   
+    <div id="withhandlebars" style="float: left; margin:10px"></div>
+    <div id="withunderscore" style="float: left; margin:10px"></div>
+
+
+
+  </body>
+
+ </html>
