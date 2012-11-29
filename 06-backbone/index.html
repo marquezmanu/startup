@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globant :: Welcome to the HTML5 bootcamp</title>
+
+    <script src="scripts/lib/jquery.js"></script>
+    <script src="scripts/lib/underscore.js"></script>
+    <script src="scripts/lib/backbone.js"></script>
+    
+  </head>
+
+  <body>
+
+  	<script>
+    
+    // Model
+
+    var MovieModel = Backbone.Model.extend({
+
+      initialize: function(){
+        console.log('MovieModel initialized');
+      },
+      defaults: {
+        name: "Avatar",
+      }
+    }); 
+
+    // Model Collection
+
+    var MovieModelCollection = Backbone.Collection.extend({
+      model: MovieModel
+    });
+
+
+    // View
+    (function($){
+
+      var MovieView = Backbone.View.extend({
+        el: $('body'), // attaches `this.el` to an existing element, in this case 'body'
+
+        events: {
+          'click button#addMovielist': 'addMovie',
+        },
+
+        initialize: function(){
+          _.bindAll(this,'render','addMovie','appendMovie');
+          
+          this.movies = new MovieModelCollection();
+          this.movies.bind('add', this.appendMovie ); // collection event binder
+
+          this.counter = 0; //total number of movies addes thus far
+          this.render();
+          console.log('MovieView initialized');
+        },
+
+        render: function(){
+          var self = this;
+          $(this.el).append('<strong> Movies list:  </strong><br />');      
+          $(this.el).append('<button id="addMovielist">Add Movie</button><br />');
+          $(this.el).append('Movie Name '+'<input id="movieName" type="text" value="Avatar">');
+          $(this.el).append('<ul id="list"></ul>');
+        },
+
+        addMovie: function(){
+          console.log('Inside addMovie event');
+          this.counter++;
+          var movie = new MovieModel();
+
+          var moviename = $('#movieName').val(); 
+          console.log('moviename: '+moviename);
+          movie.set({
+            name: moviename 
+          });
+
+          this.movies.add(movie); // add movie to movies; view is updated via event 'add'
+          console.log('Movie name: ' + movie.get('name'));
+        },
+
+
+        appendMovie: function(movie){
+          console.log('Inside appendMovie');
+          $('#list', this.el).append('<li>' + movie.get('name') + '</li>');
+        },
+
+      });
+
+      var movieView = new MovieView();
+    })(jQuery);
+    
+  
+    </script>
+
+  </body>
+
+ </html>
