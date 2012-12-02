@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# version 1.0.0
+
+CACHE:
+
+index.html
+
+scripts/lib/jquery.js
+scripts/app/dragndrop.js
+scripts/app/geolocation.js
+scripts/app/jscodetester.js
+scripts/app/storage.js
+
+
+
+NETWORK:
+*

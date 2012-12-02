@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">   
+        <title>Globant :: Welcome to the HTML5 bootcamp</title>
+        <script src="scripts/lib/jquery.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <link href="scripts/css/style1.css" rel="stylesheet">
+    </head>
+    <script>
+
+    $(document).ready(function(){
+
+      //exercise 7 --> Cache Manifiest
+      
+      window.applicationCache.addEventListener('updateready', function(e) {
+        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+          window.applicationCache.swapCache();
+          if (confirm('A new version of this site is available. Load it?')) {
+            window.location.reload();
+          }
+        }
+      }, false);
+
+      //exercise 5 --> Web Worker
+      /*
+      var worker = new Worker('task.js');
+
+      worker.onmessage = function(e) {
+        console.log('Worker said: ', e.data);
+      };
+
+      worker.postMessage('Message every 60 second'); // Send data to our worker.
+      */
+ 
+    });
+
+    </script>
+
+    <body>
+      <header>
+        <h1> Topic 8: HTML5 APIs </h1>
+      </header>
+
+      <section>
+          <script src="scripts/app/jscodetester.js"></script>
+          <script src="scripts/app/storage.js"></script>
+          <header>
+            <h1> Insert your Javascript code </h1> 
+          </header>
+          <p> Input </p>
+          <textarea id="inputjs" col="40" row="20"></textarea> 
+          <button id="runcode"> Run Code </button>
+          <button id="savecode"> Save Code </button>  
+          <p> Output </p>
+          <textarea id="outputjs" col="40" row="20"></textarea>
+      </section>
+
+      <section class="dragndrop">
+        <script src="scripts/app/dragndrop.js"></script>
+        <header>
+          <h1> Drag and Drop Files </h1>
+        </header>
+        <p> Drop file here...</p>
+        <div id="dropzone"></div>
+        <p> Info dropped file </p>
+        <div id="dragzone"></div>
+      </section>
+
+      <section>
+        
+        <script src="scripts/app/geolocation.js"></script>
+        <header>
+          <h1> Geolocation </h1>
+        </header>
+        <button id="btnInit">Find my location</button> 
+        <div id="mapgeolocation"></div>
+      </section>
+      
+
+    </body>
+</html>

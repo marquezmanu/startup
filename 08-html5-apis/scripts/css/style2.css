@@ -1,0 +1,18 @@
+.dragndrop div {
+      min-height: 100px;
+      width: 500px;
+      border: 3px dashed #ccc;
+      margin: 10px;
+      padding: 10px;
+    }
+
+#mapgeolocation {
+  height: 300px;
+  width: 500px;
+
+}
+
+body {
+  background-color: blue;
+  text-align: center;
+}
