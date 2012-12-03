@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="cache.appcache">
     <head>
         <meta charset="utf-8">   
         <title>Globant :: Welcome to the HTML5 bootcamp</title>
@@ -7,37 +7,9 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
         <link href="scripts/css/style1.css" rel="stylesheet">
     </head>
-    <script>
-
-    $(document).ready(function(){
-
-      //exercise 7 --> Cache Manifiest
-      
-      window.applicationCache.addEventListener('updateready', function(e) {
-        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-          window.applicationCache.swapCache();
-          if (confirm('A new version of this site is available. Load it?')) {
-            window.location.reload();
-          }
-        }
-      }, false);
-
-      //exercise 5 --> Web Worker
-      /*
-      var worker = new Worker('task.js');
-
-      worker.onmessage = function(e) {
-        console.log('Worker said: ', e.data);
-      };
-
-      worker.postMessage('Message every 60 second'); // Send data to our worker.
-      */
- 
-    });
-
-    </script>
 
     <body>
+      <script src="scripts/app/cache.js"></script>
       <header>
         <h1> Topic 8: HTML5 APIs </h1>
       </header>
@@ -77,6 +49,17 @@
         <div id="mapgeolocation"></div>
       </section>
       
+      <section>
+        <script src="scripts/app/webworker.js"></script>
+        <header>
+          <h1> Web Worker </h1>
+        </header>
+        <p> Message each 60 seconds: </p>
+        <div id="msgworker">
+          <ul id="listmsg"> </ul>
+        </div>
+
+      </section>
 
     </body>
 </html>
